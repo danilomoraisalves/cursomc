@@ -5,8 +5,8 @@
  */
 package br.com.cursomc.resources;
 
-import br.com.cursomc.domain.Categoria;
-import br.com.cursomc.services.CategoriaService;
+import br.com.cursomc.domain.Cliente;
+import br.com.cursomc.services.ClienteService;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,15 +22,15 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-@RequestMapping("/categorias")
-public class CategoriaResource {
+@RequestMapping("/clientes")
+public class ClienteResource {
     
     @Autowired
-    private CategoriaService service;
+    private ClienteService service;
     
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> find(@PathVariable Integer id) {
-        Categoria obj = service.find(id);
+        Cliente obj = service.find(id);
         return ResponseEntity.ok().body(obj);
     }
     
