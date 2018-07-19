@@ -6,6 +6,7 @@
 package br.com.cursomc.domain;
 
 import br.com.cursomc.domain.enums.EstadoPagamento;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.Date;
 import javax.persistence.Entity;
 
@@ -14,6 +15,7 @@ import javax.persistence.Entity;
  * @author Danilo
  */
 @Entity
+@JsonTypeName("pagamentoComCartao") 
 public class PagamentoComCartao extends Pagamento{
     
    private Integer numeroDeParcelas;

@@ -6,6 +6,7 @@
 package br.com.cursomc.services;
 
 import br.com.cursomc.domain.Categoria;
+import br.com.cursomc.dto.CategoriaDTO;
 import br.com.cursomc.repositorories.CategoriaRepository;
 import br.com.cursomc.services.exceptions.DataIntegrityException;
 import br.com.cursomc.services.exceptions.ObjectNotFoundException;
@@ -41,10 +42,10 @@ public class CategoriaService {
          return repo.save(obj);
       }
       
-      public Categoria update(Categoria obj)
-      {
-          find(obj.getId());
-         return repo.save(obj);
+       public Categoria update(Categoria obj) {
+        Categoria newObj = find(obj.getId());
+        updateData(newObj, obj);
+        return repo.save(newObj);
       }
       
       public void delete(Integer id)
@@ -65,6 +66,16 @@ public class CategoriaService {
         PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction),
                 orderBy);
         return repo.findAll(pageRequest);
+    }
+     
+    public Categoria fromDTO(CategoriaDTO obtDto)
+    {
+      return new Categoria(obtDto.getId(), obtDto.getNome());
+    }
+    
+    private void updateData(Categoria newObj, Categoria obj)
+    {
+        newObj.setNome(obj.getNome());
     }
               
 }

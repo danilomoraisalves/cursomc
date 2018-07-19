@@ -5,31 +5,27 @@
  */
 package br.com.cursomc.dto;
 
-import br.com.cursomc.domain.Categoria;
+import br.com.cursomc.domain.Produto;
 import java.io.Serializable;
 
 /**
  *
  * @author Danilo
  */
-
-import javax.validation.constraints.NotEmpty;
-import org.hibernate.validator.constraints.Length;
-
-public class CategoriaDTO implements Serializable{
+public class ProdutoDTO implements Serializable{
     
     private Integer id;
-    
-    @NotEmpty(message = "Preenchimento Obrigatório")
-    @Length(min = 5, max = 80,message = "O tamanho deve ser entre 5 e 80 caracteres")
     private String nome;
+    private Double preco;
 
-    public CategoriaDTO() {
+    public ProdutoDTO() {
     }
     
-    public CategoriaDTO(Categoria obj) {
-        id = obj.getId();
-        nome = obj.getNome();
+    public ProdutoDTO(Produto obj)
+    {
+      id = obj.getId();
+      nome = obj.getNome();
+      preco = obj.getPreco();
     }
 
     public Integer getId() {
@@ -46,6 +42,14 @@ public class CategoriaDTO implements Serializable{
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public Double getPreco() {
+        return preco;
+    }
+
+    public void setPreco(Double preco) {
+        this.preco = preco;
     }
     
     

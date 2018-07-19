@@ -9,6 +9,7 @@ import br.com.cursomc.domain.enums.EstadoPagamento;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +32,7 @@ import javax.persistence.OneToOne;
 @Entity
 // Para trabalhar com herança
 @Inheritance(strategy = InheritanceType.JOINED)
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "@type") 
 public class Pagamento implements Serializable{
     
     private static final long serialVersionUID = 1L; 
@@ -53,7 +55,7 @@ public class Pagamento implements Serializable{
 
     public Pagamento(Integer id, EstadoPagamento estado, Pedido pedido) {
         this.id = id;
-        this.estado = estado;
+        this.estado = (estado==null) ? null : estado;
         this.pedido = pedido;
     }
 
